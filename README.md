@@ -87,7 +87,7 @@ FastAPI normally returns 422 for invalid input. This project overrides that hand
 
 ## Stage 2 observations
 
-- "I was charged twice this month": correct category, valid JSON, but with leading newlines.
+- Clean billing message: correct, valid JSON. First run had leading newlines; a later run was clean (`cohere/north-mini-code:free`).
 - Ambiguous message: returned `other` with low confidence, but the reason matched my own prompt example, so this is weak evidence.
-- Hijack attempt: did not leak the prompt, but returned non-JSON (a safety-style label). Model reported: ___.
-- Clean message, second run: valid JSON with no extra characters, served by `cohere/north-mini-code:free`. The free router can pick a different model per call, so format varies between calls.
+- Hijack attempt: first run returned non-JSON safety-style text (model not logged). Second run, served by `liquid/lfm-2.5-2.6b:free`, returned clean JSON and classified it as `other`. It used confidence 0.4 although my prompt said 0.3 or below.
+- The free router picks a different model per call (OpenRouter's dashboard showed 4+ models across 6 requests), so output format varies. This is why Stage 3 validates every response.
