@@ -84,3 +84,10 @@ FastAPI normally returns 422 for invalid input. This project overrides that hand
 - [ ] Stage 3: parse, validate, repair, quarantine
 - [ ] Stage 4: timeout, retries, cost logging, kill switch
 - [ ] Stage 5: evals and final README
+
+## Stage 2 observations
+
+- "I was charged twice this month": correct category, valid JSON, but with leading newlines.
+- Ambiguous message: returned `other` with low confidence, but the reason matched my own prompt example, so this is weak evidence.
+- Hijack attempt: did not leak the prompt, but returned non-JSON (a safety-style label). Model reported: ___.
+- Clean message, second run: valid JSON with no extra characters, served by `cohere/north-mini-code:free`. The free router can pick a different model per call, so format varies between calls.
