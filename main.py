@@ -68,9 +68,9 @@ def call_model(messages, repair=False):
     except AuthenticationError:
         print("PROVIDER AUTH FAILED: check LLM_API_KEY")
         raise HTTPException(status_code=503, detail="Model service is misconfigured")
-    except APIStatusError as e:
-        print("PROVIDER ERROR:", e.status_code)
-        raise HTTPException(status_code=503, detail="Model service is unavailable")
+    except APIConnectionError as e:
+        print("PROVIDER CONNECTION FAILED:", e)
+        raise HTTPException(status_code=503, detail="Could not reach the model")
 
     duration_ms = int((time.time() - start) * 1000)
     log_call(response.model, response.usage, duration_ms, repair)
