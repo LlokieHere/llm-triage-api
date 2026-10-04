@@ -1,0 +1,10 @@
+[
+  {"text": "I was charged twice this month", "expected": "billing"},
+  {"text": "The app crashes every time I open the settings page", "expected": "bug"},
+  {"text": "It would be great if you added a dark mode", "expected": "feature"},
+  {"text": "I can't log in, it says my password is wrong", "expected": "account"},
+  {"text": "Please refund my last invoice", "expected": "billing"},
+  {"text": "The export button does nothing when I click it", "expected": "bug"},
+  {"text": "Something feels off, maybe it's slow or maybe I want a new layout", "expected": "other"},
+  {"text": "asdf ??? hello", "expected": "other"}
+]
